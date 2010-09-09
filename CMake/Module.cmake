@@ -136,5 +136,5 @@ MACRO (MODULE)
 				)
 		EndIf ()
 	EndIf ()
-ENDMACRO (LIBRARY)
+ENDMACRO (MODULE)
 

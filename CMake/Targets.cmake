@@ -155,7 +155,7 @@ MACRO (QT_EXE)
 		OTHER_SOURCES ${ARGS_OTHER_SOURCES}
 		TYPE "Executable"
 		)
-ENDMACRO (QT_LIBRARY)
+ENDMACRO (QT_EXE)
 
 #MACRO (LIBRARY)
 #	Parse_Arguments (LibraryTarget
