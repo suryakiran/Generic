@@ -3,9 +3,17 @@
 
 #include <utility>
 
-typedef std::pair<int, int> IntPair;
-typedef std::pair<std::string, std::string> StringPair;
-typedef std::pair<int, std::string> IntStringPair;
-typedef std::pair<std::string, int> StringIntPair;
+#include <boost/preprocessor/cat.hpp>
+
+#ifndef DEFINE_PAIR
+#define DEFINE_PAIR(p_first, p_second, p_name)\
+	typedef std::pair<p_first, p_second> BOOST_PP_CAT(p_name, Pair);\
+
+#endif
+
+DEFINE_PAIR(int, int, Int);
+DEFINE_PAIR(std::string, std::string, String);
+DEFINE_PAIR(int, std::string, IntString);
+DEFINE_PAIR(std::string, int, StringInt);
 
 #endif

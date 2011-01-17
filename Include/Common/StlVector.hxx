@@ -1,27 +1,24 @@
 #ifndef STL_VECTOR_HXX
 #define STL_VECTOR_HXX 1
 
+#include <Common/Concatenate.hpp>
 #include <vector>
 #include <string>
 
-typedef std::vector<std::string> StringVec ;
-typedef StringVec::iterator StringVecIter;
-typedef StringVec::const_iterator StringVecIterC;
+#ifndef DEFINE_VECTOR
+#define DEFINE_VECTOR(p_type, p_name)\
+	typedef std::vector<p_type> CAT(p_name, Vector);\
+	typedef CAT(p_name, Vector::iterator) CAT(p_name, VecIter);\
+	typedef CAT(p_name, Vector::reverse_iterator) CAT(p_name, VecRIter);\
+	typedef CAT(p_name, Vector::const_iterator) CAT(p_name, VecIterC);\
+	typedef CAT(p_name, Vector::const_reverse_iterator) CAT(p_name, VecRIterC);
+#endif
 
-typedef std::vector<int> IntVec ;
-typedef IntVec::iterator IntVecIter;
-typedef IntVec::const_iterator IntVecIterC;
-
-typedef std::vector<long> LongVec ;
-typedef LongVec::iterator LongVecIter;
-typedef LongVec::const_iterator LongVecIterC;
-
-typedef std::vector<double> DoubleVec ;
-typedef DoubleVec::iterator DoubleVecIter;
-typedef DoubleVec::const_iterator DoubleVecIterC;
-
-typedef std::vector<float> FloatVec ;
-typedef FloatVec::iterator FloatVecIter;
-typedef FloatVec::const_iterator FloatVecIterC;
+DEFINE_VECTOR(int, Int);
+DEFINE_VECTOR(float, Float);
+DEFINE_VECTOR(double, Double);
+DEFINE_VECTOR(long, Long);
+DEFINE_VECTOR(short, Short);
+DEFINE_VECTOR(std::string, String);
 
 #endif

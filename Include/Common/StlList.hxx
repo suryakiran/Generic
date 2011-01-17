@@ -1,27 +1,24 @@
 #ifndef STL_LIST_HXX
 #define STL_LIST_HXX 1
 
+#include <Common/Concatenate.hpp>
+
 #include <list>
 #include <string>
 
-typedef std::list<std::string> StringList ;
-typedef StringList::iterator StringListIter;
-typedef StringList::const_iterator StringListIterC;
+#ifndef DEFINE_LIST
+#define DEFINE_LIST(p_type, p_name)\
+	typedef std::list<p_type> CAT(p_name, List);\
+	typedef CAT(p_name, List::iterator) CAT(p_name, ListIter);\
+	typedef CAT(p_name, List::reverse_iterator) CAT(p_name, ListRIter);\
+	typedef CAT(p_name, List::const_iterator) CAT(p_name, ListIterC);\
+	typedef CAT(p_name, List::const_reverse_iterator) CAT(p_name, ListRIterC);
+#endif
 
-typedef std::list<int> IntList ;
-typedef IntList::iterator IntListIter;
-typedef IntList::const_iterator IntListIterC;
-
-typedef std::list<long> LongList ;
-typedef LongList::iterator LongListIter;
-typedef LongList::const_iterator LongListIterC;
-
-typedef std::list<double> DoubleList ;
-typedef DoubleList::iterator DoubleListIter;
-typedef DoubleList::const_iterator DoubleListIterC;
-
-typedef std::list<float> FloatList ;
-typedef FloatList::iterator FloatListIter;
-typedef FloatList::const_iterator FloatListIterC;
+DEFINE_LIST(int, Int);
+DEFINE_LIST(long, Long);
+DEFINE_LIST(float, Float);
+DEFINE_LIST(double, Double);
+DEFINE_LIST(std::string, String);
 
 #endif

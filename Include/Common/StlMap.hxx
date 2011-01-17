@@ -1,28 +1,23 @@
 #ifndef STL_MAP_HXX
 #define STL_MAP_HXX 1
 
+#include <Common/Concatenate.hpp>
+
 #include <map>
 #include <string>
 
-typedef std::map<std::string, std::string> StringMap;
-typedef StringMap::value_type StringMapValue;
-typedef StringMap::iterator StringMapIter;
-typedef StringMap::const_iterator StringMapIterC;
+#ifndef DEFINE_MAP
+#define DEFINE_MAP(p_key, p_value, p_name)\
+	typedef std::map<p_key, p_value> CAT(p_name, Map);\
+	typedef CAT(p_name, Map::iterator) CAT(p_name, MapIter);\
+	typedef CAT(p_name, Map::const_iterator) CAT(p_name, MapIterC);\
+	typedef CAT(p_name, Map::value_type) CAT(p_name, MapValue)
+#endif
 
-typedef std::map<int, int> IntMap;
-typedef IntMap::value_type IntMapValue;
-typedef IntMap::iterator IntMapIter;
-typedef IntMap::const_iterator IntMapIterC;
-
-typedef std::map<int, std::string> IntStringMap;
-typedef IntStringMap::value_type IntStringMapValue;
-typedef IntStringMap::iterator IntStringMapIter;
-typedef IntStringMap::const_iterator IntStringMapIterC;
-
-typedef std::map<std::string, int> StringIntMap;
-typedef StringIntMap::value_type StringIntMapValue;
-typedef StringIntMap::iterator StringIntMapIter;
-typedef StringIntMap::const_iterator StringIntMapIterC;
+DEFINE_MAP(int, int, Int);
+DEFINE_MAP(std::string, std::string, String);
+DEFINE_MAP(std::string, int, StringInt);
+DEFINE_MAP(int, std::string, StringInt);
 
 #include <Common/StlPair.hxx>
 
