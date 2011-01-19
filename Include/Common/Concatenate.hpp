@@ -8,11 +8,11 @@
 #endif
 
 #ifndef CAT12_3
-#define CAT3(a, b, c) BOOST_PP_CAT(BOOST_PP_CAT(a, b), c)
+#define CAT12_3(a, b, c) BOOST_PP_CAT(BOOST_PP_CAT(a, b), c)
 #endif
 
 #ifndef CAT1_23
-#define CAT3(a, b, c) BOOST_PP_CAT(a, BOOST_PP_CAT(b, c))
+#define CAT1_23(a, b, c) BOOST_PP_CAT(a, BOOST_PP_CAT(b, c))
 #endif
 
 #ifndef CAT3
