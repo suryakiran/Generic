@@ -8,10 +8,18 @@ Macro (FIND_CXX_HEADER header)
 	EndIf ()
 EndMacro(FIND_CXX_HEADER)
 
-Macro (FIND_BOOL)
+Macro (FIND_BOOL var)
+	Message (STATUS "Checking for bool")
 	Try_Compile (
-		BOOL_EXISTS
-		${CMAKE_CURRENT_BINARY_DIR}/CMakeTmp/Bool ${GENERIC_CMAKE_SRC}/TestBool.cxx
+		${var}
+		${CMAKE_CURRENT_BINARY_DIR}/CMakeTmp/Bool ${CMAKE_MODULES_DIR}/src/TestBool.cxx
 		OUTPUT_VARIABLE OUTPUT
 		)
+	If (${var})
+		Set (${var} 1 CACHE INTERNAL "Support for C++ type bool")
+		Message (STATUS "Checking for bool -- found")
+	Else ()
+		Set (${var} 0 CACHE INTERNAL "Support for C++ type bool")
+		Message (STATUS "Checking for bool -- not found")
+	EndIf()
 EndMacro (FIND_BOOL)
